@@ -23,6 +23,7 @@ public class GetBookingTest {
     public void setup() {
         apiClient = new APIClient();
         objectMapper = new ObjectMapper();
+        apiClient.createToken("admin", "password123");
     }
 
     @Test

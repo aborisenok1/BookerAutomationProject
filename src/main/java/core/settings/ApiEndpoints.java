@@ -1,6 +1,7 @@
 package core.settings;
 
 public enum ApiEndpoints {
+    AUTH("/auth"),
     PING("/ping"),
     BOOKING("/booking");
 
