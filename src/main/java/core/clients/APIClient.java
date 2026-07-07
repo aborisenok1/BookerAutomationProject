@@ -1,5 +1,10 @@
 package core.clients;
 
+import core.settings.ApiEndpoints;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -29,5 +34,36 @@ public class APIClient {
             throw new IllegalStateException("Unable to load configuration file: " + configFileName, e);
         }
         return properties.getProperty("baseUrl");
+    }
+
+    // Настройка базовых параметров HTTP-запросов
+    private RequestSpecification getRequestSpec() {
+        return RestAssured.given()
+                .baseUri(baseUrl)
+                .header("Content-Type", "application/json")
+                .header("Accept", "application/json");
+    }
+
+    // Настройка базовых параметров HTTP-запросов
+    public Response ping() {
+        return getRequestSpec()
+                .when()
+                .get(ApiEndpoints.PING.getPath()) //Используем ENUM Для эндпоинта /ping
+                .then()
+                .statusCode(201) //Ожидаемы статус-код 201 Created
+                .extract()
+                .response();
+
+    }
+
+    // GET запрос на эндпоинт /booking
+    public Response getBooking() {
+        return getRequestSpec()
+                .when()
+                .get(ApiEndpoints.BOOKING.getPath()) //Используем ENUM Для эндпоинта /ping
+                .then()
+                .statusCode(200) //Ожидаемы статус-код 200
+                .extract()
+                .response();
     }
 }
