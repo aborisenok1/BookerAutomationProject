@@ -41,6 +41,7 @@ public class testDeleteBookingById {
 
         apiClient.createToken("admin", "password123");
         apiClient.deleteBooking(deletedBookingId);
+        assertThat(apiClient.getBookingById(deletedBookingId).getStatusCode()).isEqualTo(404);
         System.out.println(apiClient.getBooking().getBody().asString());
     }
 }
