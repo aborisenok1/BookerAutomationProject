@@ -26,7 +26,7 @@ public class GetBookingTest {
     }
 
     @Test
-    public void testGetBooking() throws Exception {
+    public void testGetBookingById() throws Exception {
         Response response = apiClient.getBooking();
 
         AssertionsForClassTypes.assertThat(response.getStatusCode()).isEqualTo(200);
