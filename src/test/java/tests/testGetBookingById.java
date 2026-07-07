@@ -31,7 +31,7 @@ public class testGetBookingById {
     public void testGetBookingById() throws Exception {
         // Сначала получаем список всех бронирований, чтобы взять существующий ID
         Response allBookingsResponse = apiClient.getBooking();
-        AssertionsForClassTypes.assertThat(allBookingsResponse.getStatusCode()).isEqualTo(200);
+        assertThat(allBookingsResponse.getStatusCode()).isEqualTo(200);
 
         String allBookingsBody = allBookingsResponse.getBody().asString();
         List<Booking> allBookings = objectMapper.readValue(allBookingsBody, new TypeReference<List<Booking>>() {});

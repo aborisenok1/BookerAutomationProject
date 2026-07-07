@@ -46,7 +46,8 @@ public class APIClient {
         return RestAssured.given()
                 .baseUri(baseUrl)
                 .header("Content-Type", "application/json")
-                .header("Accept", "application/json");
+                .header("Accept", "application/json")
+                .filter(addAuthTokenFilter());
     }
 
     // Настройка базовых параметров HTTP-запросов
@@ -117,7 +118,7 @@ public class APIClient {
                 .delete(ApiEndpoints.BOOKING.getPath() + "/{id}")
                 .then()
                 .log().all()
-                .statusCode(201) //Ожидаемы статус-код 200
+                .statusCode(201) //Ожидаемы статус-код 201
                 .extract()
                 .response();
     }

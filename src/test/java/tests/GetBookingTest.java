@@ -23,11 +23,10 @@ public class GetBookingTest {
     public void setup() {
         apiClient = new APIClient();
         objectMapper = new ObjectMapper();
-        apiClient.createToken("admin", "password123");
     }
 
     @Test
-    public void testGetBookingById() throws Exception {
+    public void testGetBooking() throws Exception {
         Response response = apiClient.getBooking();
 
         AssertionsForClassTypes.assertThat(response.getStatusCode()).isEqualTo(200);
