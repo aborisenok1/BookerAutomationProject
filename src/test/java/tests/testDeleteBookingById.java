@@ -37,7 +37,9 @@ public class testDeleteBookingById {
         assertThat(allBookings).isNotEmpty();
 
         int deletedBookingId = allBookings.get(0).getBookingid();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println("Удалённый айдишник - " + deletedBookingId);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
         apiClient.createToken("admin", "password123");
         apiClient.deleteBooking(deletedBookingId);
